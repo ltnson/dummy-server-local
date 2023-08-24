@@ -33,6 +33,7 @@ app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 );
 
+console.log(1231123);
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -44,7 +45,7 @@ app.use((req, res, next) => {
 });
 app.post("/upload", (req, res) => {
   if (!req.file) {
-    return res.status(400).json({ message: "Không có tệp ảnh được tải lên." });
+    return res.status(400).json({ message: "Không có tệp ảnh in body" });
   }
   const tempPath = req.file.path;
   const targetPath = path.join(__dirname, "public/image", req.file.filename);
